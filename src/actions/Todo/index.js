@@ -1,4 +1,3 @@
-import { Dispatch } from 'redux'
 import {
   POST_CLEAR_DATA,
   POST_GET_FAIL,
@@ -13,7 +12,7 @@ import {
 } from '../../redux/Constants/Todo'
 
 // Service
-import postService from '../../services/Posts'
+import postService from '../../services/Post'
 
 // Utils
 import handleResponse from '../../utils/Response'
@@ -28,33 +27,31 @@ const todoAction = {
       }
     })
   },
-  SetNewTask:
-    (task) => async (dispatch, getState) => {
-      const { todo } = getState()
-      dispatch({
-        type: TODO_TASK_ADD,
-        payload: {
-          lists: todo.lists ? todo.lists.concat(task) : [task]
-        }
-      })
-    },
-  SetTaskCompleted:
-    (task) => async (dispatch, getState) => {
-      const { todo } = getState()
-      const todoLists = todo.lists
-      const index = todoLists.indexOf(task)
-      if (index > -1) {
-        todoLists.splice(index, 1)
+  SetNewTask: task => async (dispatch, getState) => {
+    const { todo } = getState()
+    dispatch({
+      type: TODO_TASK_ADD,
+      payload: {
+        lists: todo.lists ? todo.lists.concat(task) : [task]
       }
+    })
+  },
+  SetTaskCompleted: task => async (dispatch, getState) => {
+    const { todo } = getState()
+    const todoLists = todo.lists
+    const index = todoLists.indexOf(task)
+    if (index > -1) {
+      todoLists.splice(index, 1)
+    }
 
-      dispatch({
-        type: TODO_TASK_COMPLETED,
-        payload: {
-          lists: todoLists
-        }
-      })
-    },
-  GetPostList: () => async (dispatch) => {
+    dispatch({
+      type: TODO_TASK_COMPLETED,
+      payload: {
+        lists: todoLists
+      }
+    })
+  },
+  GetPostList: () => async dispatch => {
     // Clear data of example in Redux
     dispatch({
       type: POST_CLEAR_DATA

@@ -1,8 +1,5 @@
 const format = {
-  currency: ({
-    number,
-    isDecimal = false
-  }) => {
+  currency: ({ number, isDecimal = false }) => {
     let money = number
     if (isDecimal) {
       money = number.toLocaleString('en-US', {

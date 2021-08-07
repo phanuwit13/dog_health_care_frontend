@@ -3,12 +3,9 @@ import {
   POST_CLEAR_DATA,
   POST_GET_FAIL,
   POST_GET_SUCCESS
-} from '../Constants/Post'
+} from '../../Constants/Post'
 
-const post = (
-  state,
-  action
-) => {
+const post = (state, action) => {
   switch (action.type) {
     case POST_GET_SUCCESS:
       return {

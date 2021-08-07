@@ -5,11 +5,7 @@ import Cookies from 'js-cookie'
 import FullLayout from './Full'
 import MainLayout from './Main'
 
-const CoreLayout = ({
-  isAuth,
-  layout,
-  children
-}) => {
+const CoreLayout = ({ isAuth, layout, children }) => {
   let layoutComponent = <FullLayout>{children}</FullLayout>
 
   // route require authentication

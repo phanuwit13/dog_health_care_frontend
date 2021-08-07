@@ -5,8 +5,9 @@ const postService = {
     let response = null
 
     try {
-      const responseData =
-        await axios.get('https://jsonplaceholder.typicode.com/posts')
+      const responseData = await axios.get(
+        'https://jsonplaceholder.typicode.com/posts'
+      )
 
       response = {
         status: responseData.status,

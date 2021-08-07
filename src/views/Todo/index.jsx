@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 // Actions
-import todoAction from '../actions/Todo'
+import todoAction from '../../actions/Todo'
 
 // Components
-import Task from './Todo/Task'
-import Post from './Todo/Post'
+import Task from './Task'
+import Post from './Post'
 
 const TodoPage = () => {
   const dispatch = useDispatch()
@@ -15,7 +15,7 @@ const TodoPage = () => {
 
   const [newTask, setNewTask] = useState('')
 
-  const handleForm = (event) => {
+  const handleForm = event => {
     event.preventDefault()
     dispatch(todoAction.SetNewTask(newTask))
     setNewTask('')

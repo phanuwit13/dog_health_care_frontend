@@ -5,7 +5,7 @@ const xxuLanguage = {
     const lang = localStorage.getItem('i18nextLng') || 'th'
     return lang
   },
-  SetCurrentLanguage: (lang) => {
+  SetCurrentLanguage: lang => {
     localStorage.setItem('i18nextLng', lang.toLowerCase())
     window.location.reload()
   }

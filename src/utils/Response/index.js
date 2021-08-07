@@ -1,18 +1,18 @@
 const handleResponse = {
-  Clear: (data) => {
+  Clear: data => {
     const { type, dispatch } = data
     dispatch({
       type
     })
   },
-  Success: (data) => {
+  Success: data => {
     const { type, dispatch, payload } = data
     dispatch({
       type,
       payload
     })
   },
-  Error: (data) => {
+  Error: data => {
     const { type, dispatch, error, errorPage, attach } = data
 
     if (error.data?.msg === 'Network Error') {

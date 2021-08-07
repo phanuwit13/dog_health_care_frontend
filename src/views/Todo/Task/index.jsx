@@ -1,11 +1,12 @@
-import xxaTodo from 'actions/Todo'
 import { useDispatch } from 'react-redux'
+
+import todoAction from '../../../actions/Todo'
 
 const Task = ({ data }) => {
   const dispatch = useDispatch()
 
-  const handleTaskCompleted = (event) => {
-    dispatch(xxaTodo.SetTaskCompleted(event.target.value))
+  const handleTaskCompleted = event => {
+    dispatch(todoAction.SetTaskCompleted(event.target.value))
   }
 
   return (

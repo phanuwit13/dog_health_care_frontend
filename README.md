@@ -1,5 +1,16 @@
 # Getting Started with Create React App
 
+#### Global settings for line endings
+The git config core.autocrlf command is used to change how Git handles line endings. It takes a single argument.
+
+On Windows, you simply pass true to the configuration. For example:
+
+```
+$ git config --global core.autocrlf true
+# Configure Git to ensure line endings in files you checkout are correct for Windows.
+# For compatibility, line endings are converted to Unix style when you commit files.
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
