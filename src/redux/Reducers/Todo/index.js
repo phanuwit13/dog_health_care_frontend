@@ -5,7 +5,7 @@ import {
   TODO_TASK_COMPLETED
 } from '../../Constants/Todo'
 
-const todo = (state, action) => {
+const todo = (state = {}, action) => {
   switch (action.type) {
     case TODO_TASK_LISTS:
       return {

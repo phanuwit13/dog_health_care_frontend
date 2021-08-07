@@ -5,7 +5,7 @@ import {
   POST_GET_SUCCESS
 } from '../../Constants/Post'
 
-const post = (state, action) => {
+const post = (state = {}, action) => {
   switch (action.type) {
     case POST_GET_SUCCESS:
       return {

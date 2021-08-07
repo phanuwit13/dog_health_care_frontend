@@ -5,7 +5,7 @@ import { createLogger } from 'redux-logger'
 // Reducers
 import rootReducer from '../Reducers'
 
-export default function configStore() {
+export default function configStore(initial = {}) {
   let middlewares = []
   if (process.env.REACT_APP_RUN_ON === 'production') {
     middlewares = [thunkMiddleware]
@@ -15,6 +15,7 @@ export default function configStore() {
 
   const store = createStore(
     rootReducer,
+    initial,
     compose(applyMiddleware(...middlewares))
   )
 
