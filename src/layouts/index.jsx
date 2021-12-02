@@ -1,5 +1,7 @@
 import { Helmet } from 'react-helmet'
 import Cookies from 'js-cookie'
+// Chakar ui
+import { Box } from '@chakra-ui/react'
 
 // Components
 import FullLayout from './Full'
@@ -28,12 +30,12 @@ const CoreLayout = ({ isAuth, layout, children }) => {
     layoutComponent = <FullLayout>{children}</FullLayout>
   }
   return (
-    <div>
+    <Box>
       <Helmet>
-        <title>Edit Title in Layout Folder</title>
+        <title>Dogs Health Care</title>
       </Helmet>
       {layoutComponent}
-    </div>
+    </Box>
   )
 }
 

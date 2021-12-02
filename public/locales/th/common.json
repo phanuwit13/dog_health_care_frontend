@@ -1,3 +1,13 @@
 {
-  "welcome": "ยินดีต้อนรับสู่ React Typescript"
+  "welcome": "ยินดีต้อนรับสู่ React Typescript",
+  "step": {
+    "introduction": "บทนำ",
+    "term of service": "เงื่อนไขการใช้งาน",
+    "symptoms": "อาการ",
+    "results": "ผลลัพธ์"
+  },
+  "button": {
+    "next": "ถัดไป",
+    "back": "กลับ"
+  }
 }

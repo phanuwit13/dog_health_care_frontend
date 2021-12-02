@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.box-content-padding{
+  padding-inline: 15%;
+  background: #F2F5F7;
+}
+
+@media only screen and (max-width: 600px) {
+  .box-content-padding{
+    padding-inline: 4%;
+  }
+}

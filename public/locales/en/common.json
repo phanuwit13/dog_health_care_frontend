@@ -1,3 +1,13 @@
 {
-  "welcome": "Welcome to React Typescript."
+  "welcome": "Welcome to React Typescript.",
+  "step": {
+    "introduction": "Introduction",
+    "term of service": "Term of service",
+    "symptoms": "Symptoms",
+    "results": "Results"
+  },
+  "button": {
+    "next": "next",
+    "back": "back"
+  }
 }
