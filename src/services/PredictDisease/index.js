@@ -2,14 +2,14 @@ import axios from 'axios'
 import { servicePath } from '../../utils/config'
 
 const predictDiseaseService = {
-  GetPredictDisease: async (symptomData) => {
+  GetPredictDisease: async symptomData => {
     let response = null
 
     try {
       const responseData = await axios.post(
         `${servicePath.service.general}/api/predict_disease`,
         {
-          symptomData: symptomData
+          symptomData
         }
       )
       response = {

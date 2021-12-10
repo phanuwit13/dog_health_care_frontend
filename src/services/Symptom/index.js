@@ -63,8 +63,8 @@ const symptomService = {
       const responseData = await axios.post(
         `${servicePath.service.general}/api/set_symptom_of_disease`,
         {
-          symptomData: symptomData,
-          disease: disease
+          symptomData,
+          disease
         }
       )
       response = {

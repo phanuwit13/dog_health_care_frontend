@@ -12,17 +12,6 @@ import {
   Box,
   Center,
   Heading,
-  Flex,
-  Spacer,
-  Text,
-  Divider,
-  HStack,
-  Button,
-  Select,
-  CheckboxGroup,
-  Checkbox,
-  Wrap,
-  WrapItem,
   Image
 } from '@chakra-ui/react'
 

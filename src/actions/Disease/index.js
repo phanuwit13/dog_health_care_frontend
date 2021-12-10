@@ -4,7 +4,6 @@ import {
   GET_DISEASE_CLEAR_DATA
 } from '../../redux/Constants/Disease'
 
-
 // Service
 import diseaseService from '../../services/Disease'
 

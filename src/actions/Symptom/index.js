@@ -72,8 +72,11 @@ const symptomAction = {
       })
     }
   },
-  SetSymptomOfDisease: (symptomData,disease) => async (dispatch, getState) => {
-    const response = await symptomService.SetSymptomOfDisease(symptomData,disease)
+  SetSymptomOfDisease: (symptomData, disease) => async dispatch => {
+    const response = await symptomService.SetSymptomOfDisease(
+      symptomData,
+      disease
+    )
     if (response.status === 200) {
       handleResponse.Success({
         type: SET_SYMPTOM_OF_DISEASE_SUCCESS,
@@ -117,7 +120,7 @@ const symptomAction = {
     dispatch({
       type: GET_CLASS_SYMPTOM_CLEAR_DATA
     })
-  },
+  }
 }
 
 export default symptomAction
