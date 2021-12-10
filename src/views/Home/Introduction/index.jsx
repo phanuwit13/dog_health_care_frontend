@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import '../../../styles/Step.css'
+import { useDispatch, useSelector } from 'react-redux'
+
 import '../../../styles/Views/Home.scss'
 import '../../../styles/Views/Home/Introduction.scss'
+
+import doctor from '../../../assets/Images/dog_1.png';
 
 // Chakar ui
 import {
@@ -14,14 +17,29 @@ import {
   Text,
   Divider,
   HStack,
-  Image,
-  Button
+  Button,
+  Select,
+  CheckboxGroup,
+  Checkbox,
+  Wrap,
+  WrapItem,
+  Image
 } from '@chakra-ui/react'
 
-import doctor from '../../../assets/Images/dog_1.png'
+import _ from 'lodash'
+
+// Actions
+import diseaseAction from '../../../actions/Disease'
+import xxuLanguage from '../../../utils/Language'
+import symptomAction from '../../../actions/Symptom'
 
 function Introduction() {
   const { t } = useTranslation(['common'])
+  const getDisease = useSelector(state => state.getDisease)
+  const getSymptom = useSelector(state => state.getSymptom)
+
+  const lang = xxuLanguage.GetCurrentLanguage()
+
   // const [currentStep, setCurrentStep] = useState(0)
   return (
     <>

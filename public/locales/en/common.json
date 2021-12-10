@@ -8,6 +8,7 @@
   },
   "button": {
     "next": "next",
-    "back": "back"
+    "back": "back",
+    "finish":"finish"
   }
 }

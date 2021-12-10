@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 // chakar ui
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
 // PWA
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
@@ -25,8 +25,19 @@ import './styles/Main.css'
 
 const store = configStore()
 
+const theme = extendTheme({
+  styles: {
+    global: {
+      // styles for the `body`
+      body: {
+        color: '#666'
+      }
+    }
+  }
+})
+
 ReactDOM.render(
-  <ChakraProvider>
+  <ChakraProvider theme={theme}>
     <React.StrictMode>
       <Provider store={store}>
         <Suspense fallback="Loading">

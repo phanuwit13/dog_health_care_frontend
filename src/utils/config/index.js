@@ -6,7 +6,7 @@ export const servicePath = {
   service: {
     general:
       process.env.REACT_APP_RUN_ON === 'production'
-        ? 'https://tokensale.cunicorn.co'
-        : 'http://localhost:4020'
+        ? 'https://dogs-health-service.herokuapp.com'
+        : 'https://dogs-health-service.herokuapp.com'
   }
 }
