@@ -22,6 +22,18 @@ import {
   GET_CLASS_SYMPTOM_SUCCESS
 } from '../../redux/Constants/Symptom/GetClassSymptom'
 
+import {
+  GET_FIRST_SYMPTOM_CLEAR_DATA,
+  GET_FIRST_SYMPTOM_FAIL,
+  GET_FIRST_SYMPTOM_SUCCESS
+} from '../../redux/Constants/Symptom/GetFirstSymptom'
+
+import {
+  GET_NEXT_SYMPTOM_CLEAR_DATA,
+  GET_NEXT_SYMPTOM_FAIL,
+  GET_NEXT_SYMPTOM_SUCCESS
+} from '../../redux/Constants/Symptom/GetNextSymptom'
+
 // Service
 import symptomService from '../../services/Symptom'
 
@@ -120,7 +132,53 @@ const symptomAction = {
     dispatch({
       type: GET_CLASS_SYMPTOM_CLEAR_DATA
     })
-  }
+  },
+  GetFirstSymptom: () => async (dispatch, getState) => {
+    dispatch({
+      type: GET_FIRST_SYMPTOM_CLEAR_DATA
+    })
+    const response = await symptomService.GetFirstSymptom()
+    if (response.status === 200) {
+      handleResponse.Success({
+        type: GET_FIRST_SYMPTOM_SUCCESS,
+        dispatch,
+        payload: response
+      })
+    } else {
+      handleResponse.Error({
+        type: GET_FIRST_SYMPTOM_FAIL,
+        errorPage: true,
+        dispatch,
+        error: response.error
+      })
+    }
+  },
+  GetNextSymptom: (previous_symptom,previous_status) => async (dispatch, getState) => {
+    dispatch({
+      type: GET_NEXT_SYMPTOM_CLEAR_DATA
+    })
+    const response = await symptomService.GetNextSymptom(previous_symptom,previous_status)
+    if (response.status === 200) {
+      handleResponse.Success({
+        type: GET_NEXT_SYMPTOM_SUCCESS,
+        dispatch,
+        payload: response
+      })
+    } else {
+      handleResponse.Error({
+        type: GET_NEXT_SYMPTOM_FAIL,
+        errorPage: true,
+        dispatch,
+        error: response.error
+      })
+    }
+  },
+  ClearGetNextSymptom: () => async dispatch => {
+    // Clear data of example in Redux
+    dispatch({
+      type: GET_NEXT_SYMPTOM_CLEAR_DATA
+    })
+  },
 }
 
 export default symptomAction

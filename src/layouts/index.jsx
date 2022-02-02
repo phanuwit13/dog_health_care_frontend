@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet'
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import Cookies from 'js-cookie'
 // Chakar ui
 import { Box } from '@chakra-ui/react'
@@ -30,12 +30,12 @@ const CoreLayout = ({ isAuth, layout, children }) => {
     layoutComponent = <FullLayout>{children}</FullLayout>
   }
   return (
-    <Box>
+    <HelmetProvider>
       <Helmet>
         <title>Dogs Health Care</title>
       </Helmet>
       {layoutComponent}
-    </Box>
+    </HelmetProvider>
   )
 }
 

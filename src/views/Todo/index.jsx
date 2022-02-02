@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 // Actions
-import todoAction from '../../actions/Todo'
+// import todoAction from '../../actions/Todo'
+import todoAction from 'actions/Todo';
 
 // Components
 import Task from './Task'
@@ -31,39 +32,7 @@ const TodoPage = () => {
 
   return (
     <div>
-      <div>
-        <h2>Todo</h2>
-        <form onSubmit={handleForm}>
-          <input
-            type="text"
-            placeholder="Enter your new task."
-            value={newTask}
-            onChange={event => setNewTask(event.target.value)}
-          />
-        </form>
-        <hr />
-        <h3>Todo Lists</h3>
-        <ul>
-          {todo
-            ? todo.lists?.map(data => (
-                <Task key={(Math.random() * 10).toString()} data={data} />
-              ))
-            : null}
-        </ul>
-      </div>
-
-      <div>
-        <h2>Post Lists</h2>
-        <ul>
-          {post ? (
-            post.lists?.map(data => (
-              <Post key={data.id.toString()} data={data} />
-            ))
-          ) : (
-            <li>No data.</li>
-          )}
-        </ul>
-      </div>
+     
     </div>
   )
 }

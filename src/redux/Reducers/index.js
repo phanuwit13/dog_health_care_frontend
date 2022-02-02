@@ -7,7 +7,11 @@ import getSymptom from './Symptom/Get'
 import getSymtomOfDisease from './Symptom/GetSymtomOfDisease'
 import setSymtomOfDisease from './Symptom/SetSymtomOfDisease'
 import getClassSymptom from './Symptom/GetClassSymptom'
+import getFirstSymptom from './Symptom/GetFirstSymptom'
 import predictDisease from './PredictDisease'
+import getNextSymptom from './Symptom/GetNextSymptom'
+import getPredictDisease from './GetPredictDisease'
+
 
 export default combineReducers({
   post,
@@ -17,5 +21,8 @@ export default combineReducers({
   getSymtomOfDisease,
   setSymtomOfDisease,
   getClassSymptom,
-  predictDisease
+  predictDisease,
+  getFirstSymptom,
+  getNextSymptom,
+  getPredictDisease
 })

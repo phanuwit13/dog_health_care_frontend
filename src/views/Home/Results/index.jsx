@@ -28,7 +28,7 @@ import dogResult from '../../../assets/Images/dog_result.png'
 function Results() {
   const { t } = useTranslation(['common'])
 
-  const predictDisease = useSelector(state => state.predictDisease)
+  const getPredictDisease = useSelector(state => state.getPredictDisease)
 
   const lang = xxuLanguage.GetCurrentLanguage()
 
@@ -53,24 +53,24 @@ function Results() {
             <Heading fontSize="md">คาดว่าจะเป็นโรค</Heading>
             <Text ml="10px" mt="10px">
               {lang === 'en'
-                ? predictDisease.lists?.data.diseaseEN
-                : predictDisease.lists?.data.diseaseTH}
+                ? getPredictDisease.lists?.data[0].diseaseEN
+                : getPredictDisease.lists?.data[0].diseaseTH}
             </Text>
           </Box>
           <Box mt="20px">
             <Heading fontSize="md">อาการของโรค</Heading>
             <Text ml="10px" mt="10px">
               {lang === 'en'
-                ? predictDisease.lists?.data.symptomDetailEN
-                : predictDisease.lists?.data.symptomDetailTH}
+                ? getPredictDisease.lists?.data[0].symptomDetailEN
+                : getPredictDisease.lists?.data[0].symptomDetailTH}
             </Text>
           </Box>
           <Box mt="20px">
             <Heading fontSize="md">คำแนะนำ</Heading>
             <Text ml="10px" mt="10px">
               {lang === 'en'
-                ? predictDisease.lists?.data.treatmentGuidelinesEN
-                : predictDisease.lists?.data.treatmentGuidelinesTH}
+                ? getPredictDisease.lists?.data[0].treatmentGuidelinesEN
+                : getPredictDisease.lists?.data[0].treatmentGuidelinesTH}
             </Text>
           </Box>
         </Box>

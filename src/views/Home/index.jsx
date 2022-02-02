@@ -23,57 +23,34 @@ import Steps, { Step } from 'rc-steps'
 import Introduction from './Introduction'
 import LoadingPage from '../../components/loadingPage'
 import TermOfService from './TermOfService'
-import Symptoms from './Symptoms'
+// import Symptoms from './Symptoms'
+import SelectSymptoms from './SelectSymptoms'
 import Results from './Results'
 
 // Actions
 import diseaseAction from '../../actions/Disease'
 import xxuLanguage from '../../utils/Language'
 import symptomAction from '../../actions/Symptom'
-import predictDiseaseAction from '../../actions/PredictDisease'
+import getPredictDiseaseAction from '../../actions/GetPredictDisease'
 
 function HomePage() {
   const dispatch = useDispatch()
   const { t } = useTranslation(['common'])
   //redux
-  const getDisease = useSelector(state => state.getDisease)
-  const getSymptom = useSelector(state => state.getSymptom)
-  const getClassSymptom = useSelector(state => state.getClassSymptom)
-  const predictDisease = useSelector(state => state.predictDisease)
+  // const getSymptom = useSelector(state => state.getSymptom)
+  const getPredictDisease = useSelector(state => state.getPredictDisease)
 
   //state
   const [currentStep, setCurrentStep] = useState(0)
   const [disableStep2, setDisableStep2] = useState(true)
-  const [symtomOfDisease, setSymtomOfDisease] = useState([])
+  const [disease, setDisease] = useState(null)
+  const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const handleResultDisease = () => {
-    let newArray = getSymptom.lists.data.filter(item => {
-      return (
-        item.symptom_class_number ===
-        getClassSymptom.lists.data[0].symptom_class_number
-      )
-    })
-    let check = 0
-
-    newArray.map(item => {
-      symtomOfDisease.map(itemNew => {
-        if (item.symptomNumber === itemNew) {
-          check += 1
-        }
-      })
-    })
-    if (symtomOfDisease.length < 4) {
-      Swal.fire('', 'Please select more than 3 symptoms.', 'warning')
-      return
-    }
-
-    if (check === 0) {
-      Swal.fire('', 'Please select age', 'warning')
-      return
-    } else {
-      dispatch(predictDiseaseAction.PredictDisease(symtomOfDisease))
-    }
+    setLoading(true)
+    dispatch(getPredictDiseaseAction.getPredictDisease(disease))
+    // dispatch(predictDiseaseAction.PredictDisease(symtomOfDisease))
   }
 
   useEffect(() => {
@@ -81,16 +58,17 @@ function HomePage() {
       dispatch(diseaseAction.GetDisease())
       dispatch(symptomAction.GetSymptom())
       dispatch(symptomAction.GetClassSymptom())
+      dispatch(symptomAction.GetFirstSymptom())
     }
     loadTodoLists()
   }, [dispatch])
 
   useEffect(() => {
-    if (predictDisease.lists) {
+    if (getPredictDisease.lists) {
       setLoading(false)
       setCurrentStep(currentStep + 1)
     }
-  }, [predictDisease])
+  }, [getPredictDisease])
 
   return (
     <div>
@@ -129,10 +107,15 @@ function HomePage() {
               )
             } else if (currentStep == 2) {
               return (
-                <Symptoms
-                  symtomOfDisease={symtomOfDisease}
-                  setSymtomOfDisease={setSymtomOfDisease}
+                <SelectSymptoms
+                  success={success}
+                  setDisease={setDisease}
+                  setSuccess={setSuccess}
                 />
+                // <Symptoms
+                //   symtomOfDisease={symtomOfDisease}
+                //   setSymtomOfDisease={setSymtomOfDisease}
+                // />
               )
             } else {
               return <Results />
@@ -144,6 +127,12 @@ function HomePage() {
               display={currentStep === 0 ? 'none' : 'block'}
               onClick={() => {
                 setCurrentStep(currentStep - 1)
+                if (currentStep === 3 || currentStep === 2) {
+                  setDisease(null)
+                  setSuccess(false)
+                  dispatch(getPredictDiseaseAction.ClearPredictDisease())
+                  dispatch(symptomAction.ClearGetNextSymptom())
+                }
               }}
               justifySelf="flex-end"
               colorScheme="gray"
@@ -156,16 +145,23 @@ function HomePage() {
               onClick={() => {
                 if (currentStep === 2) {
                   handleResultDisease()
-                  setLoading(true)
                 } else if (currentStep === 3) {
                   setCurrentStep(0)
-                  setSymtomOfDisease([])
-                  dispatch(predictDiseaseAction.ClearPredictDisease())
+                  setDisease(null)
+                  setSuccess(false)
+                  dispatch(getPredictDiseaseAction.ClearPredictDisease())
+                  dispatch(symptomAction.ClearGetNextSymptom())
                 } else {
                   setCurrentStep(currentStep + 1)
                 }
               }}
-              disabled={currentStep === 1 ? disableStep2 : false}
+              disabled={
+                currentStep === 1
+                  ? disableStep2
+                  : currentStep === 2 && success === false
+                  ? true
+                  : false
+              }
               justifySelf="flex-end"
               colorScheme="blue"
               textTransform="uppercase"

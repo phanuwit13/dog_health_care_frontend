@@ -113,6 +113,64 @@ const symptomService = {
       }
     }
     return response
+  },
+  GetFirstSymptom: async () => {
+    let response = null
+
+    try {
+      const responseData = await axios.get(
+        `${servicePath.service.general}/api/get_first_node`
+      )
+      response = {
+        status: responseData.status,
+        lists: responseData.data
+      }
+    } catch (error) {
+      const err = error.toJSON()
+      if (err.message === 'Network Error') {
+        response = {
+          status: 500,
+          error: err
+        }
+      } else {
+        response = {
+          status: error.response.status,
+          error: error.response.data
+        }
+      }
+    }
+    return response
+  },
+  GetNextSymptom: async (previous_symptom, previous_status) => {
+    let response = null
+
+    try {
+      const responseData = await axios.post(
+        `${servicePath.service.general}/api/get_next_node`,
+        {
+          previous_symptom,
+          previous_status
+        }
+      )
+      response = {
+        status: responseData.status,
+        lists: responseData.data
+      }
+    } catch (error) {
+      const err = error.toJSON()
+      if (err.message === 'Network Error') {
+        response = {
+          status: 500,
+          error: err
+        }
+      } else {
+        response = {
+          status: error.response.status,
+          error: error.response.data
+        }
+      }
+    }
+    return response
   }
 }
 

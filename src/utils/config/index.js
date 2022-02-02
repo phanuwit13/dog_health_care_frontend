@@ -7,6 +7,6 @@ export const servicePath = {
     general:
       process.env.REACT_APP_RUN_ON === 'production'
         ? 'https://dogs-health-service.herokuapp.com'
-        : 'https://dogs-health-service.herokuapp.com'
+        : 'http://localhost:4020'
   }
 }
