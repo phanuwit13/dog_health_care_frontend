@@ -153,11 +153,11 @@ const symptomAction = {
       })
     }
   },
-  GetNextSymptom: (previous_symptom,previous_status) => async (dispatch, getState) => {
+  GetNextSymptom: (previousSymptom,previousStatus) => async (dispatch, getState) => {
     dispatch({
       type: GET_NEXT_SYMPTOM_CLEAR_DATA
     })
-    const response = await symptomService.GetNextSymptom(previous_symptom,previous_status)
+    const response = await symptomService.GetNextSymptom(previousSymptom,previousStatus)
     if (response.status === 200) {
       handleResponse.Success({
         type: GET_NEXT_SYMPTOM_SUCCESS,

@@ -141,15 +141,15 @@ const symptomService = {
     }
     return response
   },
-  GetNextSymptom: async (previous_symptom, previous_status) => {
+  GetNextSymptom: async (previousSymptom, previousStatus) => {
     let response = null
 
     try {
       const responseData = await axios.post(
         `${servicePath.service.general}/api/get_next_node`,
         {
-          previous_symptom,
-          previous_status
+          previous_symptom: previousSymptom,
+          previous_status: previousStatus
         }
       )
       response = {

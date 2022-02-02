@@ -11,8 +11,10 @@ import getPredictDiseaseService from '../../services/GetPredictDisease'
 import handleResponse from '../../utils/Response'
 
 const getPredictDiseaseAction = {
-  getPredictDisease: disease_number => async dispatch => {
-    const response = await getPredictDiseaseService.GetPredictDisease(disease_number)
+  getPredictDisease: diseaseNumber => async dispatch => {
+    const response = await getPredictDiseaseService.GetPredictDisease(
+      diseaseNumber
+    )
     if (response.status === 200) {
       handleResponse.Success({
         type: GET_PREDICT_DISEASE_SUCCESS,
