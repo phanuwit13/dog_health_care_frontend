@@ -63,68 +63,6 @@ const Symptoms = ({ success, setSuccess, setDisease }) => {
     )
   }
 
-  const componentRender = () => {
-    if (loading) {
-      return null
-    } else if (success === false) {
-      return (
-        <>
-          <Badge
-            w="200px"
-            borderRadius="8px"
-            textAlign="center"
-            variant="solid"
-            padding="8px 20px"
-            fontSize="lg"
-            colorScheme="blue"
-          >
-            {question ? question.symptomNameTH : null}
-          </Badge>
-          <Flex gridGap="20px">
-            <Button
-              onClick={() => handleAddSymtom(question, false)}
-              w="60px"
-              size="sm"
-            >
-              NO
-            </Button>
-            <Button
-              onClick={() => handleAddSymtom(question, true)}
-              w="60px"
-              size="sm"
-              colorScheme="green"
-            >
-              YES
-            </Button>
-          </Flex>
-        </>
-      )
-    } else {
-      return (
-        <>
-          <>
-            <Badge
-              w="200px"
-              borderRadius="8px"
-              textAlign="center"
-              variant="solid"
-              padding="8px 20px"
-              fontSize="lg"
-              colorScheme="green"
-            >
-              Success
-            </Badge>
-            <Text>
-              Prediction finished Please click on the{' '}
-              <span style={{ color: '#1676D0', fontWeight: '600' }}>Next</span>{' '}
-              button to see the results.
-            </Text>
-          </>
-        </>
-      )
-    }
-  }
-
   useEffect(() => {
     if (listSymptom) {
       console.log('listSymptom', listSymptom)
@@ -166,7 +104,61 @@ const Symptoms = ({ success, setSuccess, setDisease }) => {
                 size="xl"
               />
             </Box>
-            {componentRender}
+            {loading ? null : success === false ? (
+              <>
+                <Badge
+                  w="200px"
+                  borderRadius="8px"
+                  textAlign="center"
+                  variant="solid"
+                  padding="8px 20px"
+                  fontSize="lg"
+                  colorScheme="blue"
+                >
+                  {question ? question.symptomNameTH : null}
+                </Badge>
+                <Flex gridGap="20px">
+                  <Button
+                    onClick={() => handleAddSymtom(question, false)}
+                    w="60px"
+                    size="sm"
+                  >
+                    NO
+                  </Button>
+                  <Button
+                    onClick={() => handleAddSymtom(question, true)}
+                    w="60px"
+                    size="sm"
+                    colorScheme="green"
+                  >
+                    YES
+                  </Button>
+                </Flex>
+              </>
+            ) : (
+              <>
+                <>
+                  <Badge
+                    w="200px"
+                    borderRadius="8px"
+                    textAlign="center"
+                    variant="solid"
+                    padding="8px 20px"
+                    fontSize="lg"
+                    colorScheme="green"
+                  >
+                    Success
+                  </Badge>
+                  <Text>
+                    Prediction finished Please click on the{' '}
+                    <span style={{ color: '#1676D0', fontWeight: '600' }}>
+                      Next
+                    </span>{' '}
+                    button to see the results.
+                  </Text>
+                </>
+              </>
+            )}
           </VStack>
         </Center>
         <Box mt="40px">
