@@ -23,6 +23,8 @@ import Steps, { Step } from 'rc-steps'
 import Introduction from './Introduction'
 import LoadingPage from '../../components/loadingPage'
 import TermOfService from './TermOfService'
+import Summary from './Summary'
+
 // import Symptoms from './Symptoms'
 import SelectSymptoms from './SelectSymptoms'
 import Results from './Results'
@@ -46,6 +48,7 @@ function HomePage() {
   const [disease, setDisease] = useState(null)
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [listSymptom, setListSymptom] = useState([])
 
   const handleResultDisease = () => {
     setLoading(true)
@@ -75,7 +78,8 @@ function HomePage() {
       <Box className="box-home-body" alignItems="flex-start">
         <Box
           overflowX="auto"
-          marginBottom="20px"
+          marginBottom="10px"
+          paddingBottom="15px"
           className="step-mobile"
           w="100%"
         >
@@ -83,6 +87,7 @@ function HomePage() {
             <Step title={t('common:step.introduction')} />
             <Step title={t('common:step.term of service')} />
             <Step title={t('common:step.symptoms')} />
+            <Step title={t('common:step.summary')} />
             <Step title={t('common:step.results')} />
           </Steps>
         </Box>
@@ -91,32 +96,33 @@ function HomePage() {
             <Step title={t('common:step.introduction')} />
             <Step title={t('common:step.term of service')} />
             <Step title={t('common:step.symptoms')} />
+            <Step title={t('common:step.summary')} />
             <Step title={t('common:step.results')} />
           </Steps>
         </Box>
-        <Box p={0} borderRadius="16px" minH="600px" w="100%" bgColor="#fff">
+        <Box p={0} borderRadius="16px" minH="500px" w="100%" bgColor="#fff">
           {(() => {
-            if (currentStep == 0) {
+            if (currentStep === 0) {
               return <Introduction />
-            } else if (currentStep == 1) {
+            } else if (currentStep === 1) {
               return (
                 <TermOfService
                   disableStep2={disableStep2}
                   setDisableStep2={setDisableStep2}
                 />
               )
-            } else if (currentStep == 2) {
+            } else if (currentStep === 2) {
               return (
                 <SelectSymptoms
                   success={success}
                   setDisease={setDisease}
                   setSuccess={setSuccess}
+                  listSymptom={listSymptom}
+                  setListSymptom={setListSymptom}
                 />
-                // <Symptoms
-                //   symtomOfDisease={symtomOfDisease}
-                //   setSymtomOfDisease={setSymtomOfDisease}
-                // />
               )
+            } else if (currentStep === 3) {
+              return <Summary listSymptom={listSymptom} />
             } else {
               return <Results />
             }
@@ -130,6 +136,7 @@ function HomePage() {
                 if (currentStep === 3 || currentStep === 2) {
                   setDisease(null)
                   setSuccess(false)
+                  setListSymptom([])
                   dispatch(getPredictDiseaseAction.ClearPredictDisease())
                   dispatch(symptomAction.ClearGetNextSymptom())
                 }
@@ -145,10 +152,11 @@ function HomePage() {
               onClick={() => {
                 if (currentStep === 2) {
                   handleResultDisease()
-                } else if (currentStep === 3) {
+                } else if (currentStep === 4) {
                   setCurrentStep(0)
                   setDisease(null)
                   setSuccess(false)
+                  setListSymptom([])
                   dispatch(getPredictDiseaseAction.ClearPredictDisease())
                   dispatch(symptomAction.ClearGetNextSymptom())
                 } else {
@@ -166,7 +174,7 @@ function HomePage() {
               colorScheme="blue"
               textTransform="uppercase"
             >
-              {currentStep === 3
+              {currentStep === 4
                 ? t('common:button.finish')
                 : t('common:button.next')}
             </Button>

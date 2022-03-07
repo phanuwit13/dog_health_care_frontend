@@ -18,6 +18,8 @@ import mainRouter from './routers'
 // Layout & Views
 import Layout from './layouts'
 import NotFoundPage from './views/NotFound'
+import LoadingPage from './views/LoadingPage'
+
 
 // i18n & Styles
 import './i18n'
@@ -40,7 +42,7 @@ ReactDOM.render(
   <ChakraProvider theme={theme}>
     <React.StrictMode>
       <Provider store={store}>
-        <Suspense fallback="Loading">
+        <Suspense fallback={<LoadingPage/>}>
           <Router>
             <Switch>
               {mainRouter.map(route => {

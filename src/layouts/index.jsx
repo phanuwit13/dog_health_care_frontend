@@ -1,19 +1,20 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import Cookies from 'js-cookie'
+import token from 'utils/token'
 // Chakar ui
 import { Box } from '@chakra-ui/react'
 
 // Components
 import FullLayout from './Full'
 import MainLayout from './Main'
+import LoadingPage from '../views/LoadingPage'
+
 
 const CoreLayout = ({ isAuth, layout, children }) => {
-  let layoutComponent = <FullLayout>{children}</FullLayout>
+  let layoutComponent = <LoadingPage/>
 
   // route require authentication
   if (isAuth) {
-    const userAuth = Cookies.get('user')
-
+    const userAuth = token.getToken()
     // check user authentication (Login)
     if (userAuth) {
       if (layout === 'main') {

@@ -3,12 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "build:develop": "REACT_APP_RUN_ON=develop react-scripts build",
     "build:production": "REACT_APP_RUN_ON=production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "resolutions": {
+    "react-error-overlay": "6.0.9"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.1",

@@ -42,30 +42,28 @@ function TermOfService({ disableStep2, setDisableStep2 }) {
     <>
       <Box p={10} minH="480px" className="box-term">
         <Box w="80%" className="box-term-details">
-          <Heading fontSize="lg">Term of service!</Heading>
+          <Heading fontSize="lg">{t('common:termPage.title')}</Heading>
           <Box mt="30px">
-            <Text>
-              Before using the checkup, please read Terms of Service. Remember
-              that:
-            </Text>
+            <Text>{t('common:termPage.description')}</Text>
           </Box>
           <Box mt="20px">
-            <UnorderedList>
+            <UnorderedList spacing='10px'>
               <ListItem>
-                <Heading fontSize="md">Checkup is not a diagnosis.</Heading>
-                Checkup is for informational purposes and is not a qualified
-                medical opinion.
+                <Heading fontSize="md">
+                  {t('common:termPage.one.title')}
+                </Heading>
+                {t('common:termPage.one.description')}
               </ListItem>
               <ListItem>
-                <Heading fontSize="md">Do not use in emergencies.</Heading>In
-                case of health emergency, call your local emergency number
-                immediately.
+                <Heading fontSize="md">
+                  {t('common:termPage.two.title')}
+                </Heading>
+                In
+                {t('common:termPage.two.description')}
               </ListItem>
               <ListItem>
-                {' '}
-                <Heading fontSize="md">Your data is safe.</Heading>
-                Information that you provide is anonymous and not shared with
-                anyone.
+                <Heading fontSize="md">{t('common:termPage.three.title')}</Heading>
+                {t('common:termPage.three.title')}
               </ListItem>
             </UnorderedList>
           </Box>
@@ -78,7 +76,7 @@ function TermOfService({ disableStep2, setDisableStep2 }) {
                 spacing="15px"
                 colorScheme="teal"
               >
-                I read and accept Terms of Service and Privacy Policy.
+                {t('common:termPage.check1')}
               </Checkbox>
               <Checkbox
                 onChange={e => {
@@ -87,8 +85,7 @@ function TermOfService({ disableStep2, setDisableStep2 }) {
                 spacing="15px"
                 colorScheme="teal"
               >
-                I agree to the processing of my health information for the
-                purpose of performing the interview.
+                {t('common:termPage.check2')}
               </Checkbox>
             </Stack>
           </Box>

@@ -18,7 +18,8 @@ import {
   Divider,
   HStack,
   Image,
-  Button
+  Button,
+  Badge
 } from '@chakra-ui/react'
 
 import xxuLanguage from '../../../utils/Language'
@@ -46,19 +47,38 @@ function Results() {
           <PlusCircle color="#ffffff" />
         </Box>
       </Box>
-      <Box minH="480px" p={10} pt="10px" position="relative">
+      <Box minH="540px" p={10} pt="10px" position="relative">
         <Box>
-          <Heading fontSize="lg">Result</Heading>
+          <Flex mt="20px" flexDirection="column" alignItems="center">
+            <Heading fontSize="2xl">{t('common:result.title')}</Heading>
+            <Flex
+              flexDirection="column"
+              alignItems="center"
+              width="100%"
+              mt="20px"
+            >
+              <Heading fontSize="xl">
+              {t('common:result.subTitle')}
+              </Heading>
+              <Badge
+                mt="20px"
+                fontSize="1.8em"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                borderRadius="20px"
+                w="100%"
+                height="120px"
+                colorScheme="linkedin"
+              >
+                {lang === 'en'
+                  ? getPredictDisease.lists?.data[0].diseaseEN
+                  : getPredictDisease.lists?.data[0].diseaseTH}
+              </Badge>
+            </Flex>
+          </Flex>
           <Box mt="20px">
-            <Heading fontSize="md">คาดว่าจะเป็นโรค</Heading>
-            <Text ml="10px" mt="10px">
-              {lang === 'en'
-                ? getPredictDisease.lists?.data[0].diseaseEN
-                : getPredictDisease.lists?.data[0].diseaseTH}
-            </Text>
-          </Box>
-          <Box mt="20px">
-            <Heading fontSize="md">อาการของโรค</Heading>
+            <Heading fontSize="md">{t('common:result.symptom')}</Heading>
             <Text ml="10px" mt="10px">
               {lang === 'en'
                 ? getPredictDisease.lists?.data[0].symptomDetailEN
@@ -66,7 +86,7 @@ function Results() {
             </Text>
           </Box>
           <Box mt="20px">
-            <Heading fontSize="md">คำแนะนำ</Heading>
+            <Heading fontSize="md">{t('common:result.guidelines')}</Heading>
             <Text ml="10px" mt="10px">
               {lang === 'en'
                 ? getPredictDisease.lists?.data[0].treatmentGuidelinesEN

@@ -5,15 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../../../styles/Views/Home.scss'
 import '../../../styles/Views/Home/Introduction.scss'
 
-import doctor from '../../../assets/Images/dog_1.png';
+import doctor from '../../../assets/Images/dog_1.png'
 
 // Chakar ui
-import {
-  Box,
-  Center,
-  Heading,
-  Image
-} from '@chakra-ui/react'
+import { Box, Center, Heading, Image } from '@chakra-ui/react'
 
 import _ from 'lodash'
 
@@ -32,12 +27,13 @@ function Introduction() {
   // const [currentStep, setCurrentStep] = useState(0)
   return (
     <>
+      <Heading fontSize="xl" pt={10} px={10}>
+        {t('common:home.title')}
+      </Heading>
       <Box p={10} minH="480px" className="box-introduction">
         <Box w="80%" className="box-introduction-details" alignSelf="flex-end">
-          <Heading fontSize="lg">Hello!</Heading> You’re about to use a short (3
-          min), safe and anonymous health checkup. Your answers will be
-          carefully analyzed and you’ll learn about possible causes of your
-          symptoms.
+          <Heading fontSize="lg">{t('common:home.descriptionName')}</Heading>{' '}
+          {t('common:home.descriptionTitle')}
         </Box>
         <Box>
           <Image loop="-1" width="400px" src={doctor} alt="" />

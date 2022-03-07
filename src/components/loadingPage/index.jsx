@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 // Chakar ui
 import { Box, Spinner } from '@chakra-ui/react'
 
+import loadingImg from 'assets/Images/loading.svg';
+
 function LoadingPage({ loading }) {
   const { t } = useTranslation(['common'])
 
@@ -24,13 +26,14 @@ function LoadingPage({ loading }) {
         position="fixed"
         w="100%"
       >
-        <Spinner
+        <img src={loadingImg} alt="" />
+        {/* <Spinner
           thickness="4px"
           speed="0.65s"
           emptyColor="gray.200"
           color="blue.500"
           size="xl"
-        />
+        /> */}
       </Box>
     </>
   ) : null
